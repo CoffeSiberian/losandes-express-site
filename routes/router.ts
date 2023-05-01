@@ -5,7 +5,9 @@ import { checkValues, isCached } from "../middlewares/appMiddleware";
 import getApiResponse from "./getApiResponse";
 
 // GET
+import getPartnerLogo from "./getPartnerLogo";
 
 export default function (app: Express) {
-    app.post("/api/getApiResponse/", checkValues, isCached, getApiResponse);
+    app.post("/getApiResponse/", checkValues, isCached, getApiResponse);
+    app.get("/getPartnerLogo/:name", getPartnerLogo);
 }

@@ -29,7 +29,7 @@ npm run start
 ```
 
 <details>
- <summary><code>POST</code> <code><b>/api/getApiResponse</b></code> <code>(Send GET request to other API)</code></summary>
+ <summary><code>POST</code> <code><b>/getApiResponse</b></code> <code>(Send GET request to other API)</code></summary>
 
 `BODY`:
 
@@ -51,5 +51,19 @@ npm run start
 ### Remember
 
 These are just the responses that our backend sends. The other answers may depend on the API you are querying.
+
+</details>
+
+---
+
+<details>
+ <summary><code>GET</code> <code><b>/getPartnerLogo/:name</b></code> <code>(GET Partner Logo)</code></summary>
+
+`Response`:
+
+> | http code | content-type                  | response                     |
+> | --------- | ----------------------------- | ---------------------------- |
+> | `200`     | `image/png+jpeg+jpg+gif+webp` | `RAW image file`             |
+> | `404`     | `application/json`            | `{"error": "error message"}` |
 
 </details>
