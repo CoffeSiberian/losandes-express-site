@@ -6,8 +6,22 @@ import getApiResponse from "./getApiResponse";
 
 // GET
 import getPartnerLogo from "./getPartnerLogo";
+import getHallOfFame from "./getHallOfFame";
 
 export default function (app: Express) {
-    app.post("/getApiResponse/", checkValues, isCached, getApiResponse);
+    // POST
+    app.post(
+        "/getApiResponse/",
+        checkValues,
+        (req, res, next) => isCached(req, res, next, req.body.url),
+        getApiResponse
+    );
+
+    // GET
     app.get("/getPartnerLogo/:name", getPartnerLogo);
+    app.get(
+        "/getHallOfFame/",
+        (req, res, next) => isCached(req, res, next, "hallOfFame"),
+        getHallOfFame
+    );
 }

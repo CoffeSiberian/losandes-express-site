@@ -1,5 +1,5 @@
 interface DiscordRoles {
-    roles: string[];
+    roles_id: string[];
 }
 
 export { DiscordRoles };

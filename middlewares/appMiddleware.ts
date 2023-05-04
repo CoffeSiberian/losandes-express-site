@@ -1,13 +1,13 @@
-import { Request, Response } from "express";
+import { Request, Response, NextFunction } from "express";
 import { BodyGetTypesNull } from "../types/bodyGetTypes";
 import { BodyGetTypes } from "../types/bodyGetTypes";
-import { queryCache } from "../helpers/cache";
+import { getCache } from "../helpers/cache";
 import { CacheTypes } from "../types/cacheTypes";
 
 const checkValues = async (
     req: Request,
     res: Response,
-    next: Function
+    next: NextFunction
 ): Promise<Function | void> => {
     let bodyData: BodyGetTypesNull = req.body;
     if (
@@ -25,10 +25,11 @@ const checkValues = async (
 const isCached = async (
     req: Request,
     res: Response,
-    next: Function
+    next: NextFunction,
+    cacheKey: string
 ): Promise<Function | void> => {
     let bodyData: BodyGetTypes = req.body;
-    let cachedData: CacheTypes | undefined = queryCache.get(bodyData.url);
+    let cachedData: CacheTypes | undefined = getCache(cacheKey);
 
     if (!cachedData) return next();
 

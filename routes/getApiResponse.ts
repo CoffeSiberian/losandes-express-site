@@ -1,7 +1,7 @@
 import { Request, Response as apiResponse } from "express";
 import { getFetch } from "../helpers/dataFetch";
 import { BodyGetTypes } from "../types/bodyGetTypes";
-import { queryCache } from "../helpers/cache";
+import { setCache } from "../helpers/cache";
 
 const getApiResponse = async (req: Request, res: apiResponse) => {
     let bodyData: BodyGetTypes = req.body;
@@ -15,7 +15,7 @@ const getApiResponse = async (req: Request, res: apiResponse) => {
     res.status(apiResponse.status);
     try {
         let json = await apiResponse.json();
-        queryCache.set(bodyData.url, {
+        setCache(bodyData.url, {
             data: json,
             status: apiResponse.status,
         });

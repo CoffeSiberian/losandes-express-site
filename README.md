@@ -70,3 +70,19 @@ These are just the responses that our backend sends. The other answers may depen
 > | `404`     | `application/json`            | `{"error": "error message"}` |
 
 </details>
+
+---
+
+<details>
+ <summary><code>GET</code> <code><b>/getHallOfFame/</b></code> <code>(GET Hall Of Fame from discord roles)</code></summary>
+
+`Response`:
+
+> | http code | content-type       | response                              |
+> | --------- | ------------------ | ------------------------------------- |
+> | `200`     | `application/json` | `{"response": [discord guild member]` |
+> | `404`     | `application/json` | `{"error": 404}`                      |
+
+[Discord Guild Member](https://discord.com/developers/docs/resources/guild#guild-member-object-guild-member-structure)
+
+</details>

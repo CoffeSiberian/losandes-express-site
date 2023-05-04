@@ -21,7 +21,7 @@ interface Member {
     nick: string | null;
     pending: boolean;
     premium_since: string | null;
-    roles: string[];
+    roles: (string | undefined)[];
     user: User;
     mute: boolean;
     deaf: boolean;
