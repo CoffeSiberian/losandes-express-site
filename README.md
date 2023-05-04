@@ -5,7 +5,7 @@ PORT=8081
 CACHE_TIME=300
 DISCORD_BOT_TOKEN=your_token
 DISCORD_ID_SERVER=your_discord_server_id
-DISCORD_ROLES_ID={"roles_id":["string_id", "string_id"]}
+DISCORD_ROLES_ID="string_id","string_id"
 ```
 
 -   Cache time is represented in seconds
