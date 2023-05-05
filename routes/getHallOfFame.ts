@@ -1,7 +1,8 @@
 import { Request, Response } from "express";
-import { getFetch } from "../helpers/dataFetch";
+import { dataGet } from "../helpers/dataFetch";
 import { ListMembers, Member } from "../types/api/discordTypes";
 import { setCache } from "../helpers/cache";
+import { AxiosRequestConfig } from "axios";
 import {
     DISCORD_BOT_TOKEN,
     DISCORD_ID_SERVER,
@@ -9,8 +10,8 @@ import {
 } from "../helpers/configs";
 
 const getUsersHallOfFame = (members: ListMembers): (Member | undefined)[] => {
+    const discordRoles = DISCORD_ROLES_ID.roles_id;
     let usersHallOfFame: (Member | undefined)[] = [];
-    let discordRoles = DISCORD_ROLES_ID.roles_id;
 
     members.members.map((member) => {
         let userRoles = member.roles;
@@ -25,18 +26,23 @@ const getUsersHallOfFame = (members: ListMembers): (Member | undefined)[] => {
 };
 
 const getHallOfFame = async (req: Request, res: Response) => {
-    let apiResponse = await getFetch(
-        null,
-        { Authorization: `Bot ${DISCORD_BOT_TOKEN}` },
-        new URL(
-            `https://discord.com/api/guilds/${DISCORD_ID_SERVER}/members?limit=1000`
-        )
+    const optios: AxiosRequestConfig = {
+        headers: {
+            Authorization: `Bot ${DISCORD_BOT_TOKEN}`,
+            "Content-Type": "application/json",
+        },
+    };
+
+    const apiResponse = await dataGet(
+        optios,
+        `https://discord.com/api/guilds/${DISCORD_ID_SERVER}/members?limit=1000`
     );
 
     try {
+        if (!apiResponse || !("data" in apiResponse)) throw new Error("Error");
         if (apiResponse.status !== 200) throw new Error("Error");
-        let json: Member[] = await apiResponse.json();
-        let usersHallOfFame = getUsersHallOfFame({ members: json });
+        const json: Member[] = await apiResponse.data;
+        const usersHallOfFame = getUsersHallOfFame({ members: json });
 
         setCache("hallOfFame", {
             data: { response: usersHallOfFame },

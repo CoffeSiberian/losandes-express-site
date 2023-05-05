@@ -1,30 +1,26 @@
-const dataFetch = async (
-    body: string | null = null,
-    method: string,
-    headers: HeadersInit,
-    url: URL
-): Promise<Response> => {
-    let optiosFetch = {
-        method: method,
-        headers: headers,
-        body: body,
-    };
+import axios, { AxiosResponse, AxiosRequestConfig } from "axios";
 
+const dataGet = async (
+    optios: AxiosRequestConfig | undefined,
+    url: string
+): Promise<AxiosResponse | false> => {
     try {
-        return await fetch(url, optiosFetch);
-    } catch (err: any) {
-        return new Response(JSON.stringify({ error: "API response error" }), {
-            status: 404,
-        });
+        return await axios.get(url, optios);
+    } catch (e) {
+        return false;
     }
 };
 
-const getFetch = async (
-    body: string | null = null,
-    headers: HeadersInit,
-    url: URL
-): Promise<Response> => {
-    return await dataFetch(body, "GET", headers, url);
+const dataPost = async (
+    optios: AxiosRequestConfig | undefined,
+    payload: string,
+    url: string
+): Promise<AxiosResponse | false> => {
+    try {
+        return await axios.post(url, payload, optios);
+    } catch (e) {
+        return false;
+    }
 };
 
-export { getFetch };
+export { dataGet, dataPost };

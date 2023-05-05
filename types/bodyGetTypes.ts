@@ -1,11 +1,13 @@
+import { AxiosRequestHeaders } from "axios";
+
 interface BodyGetTypesNull {
     url: string | null;
-    headers: HeadersInit | null;
+    headers: AxiosRequestHeaders | null;
 }
 
 interface BodyGetTypes {
     url: string;
-    headers: HeadersInit;
+    headers: AxiosRequestHeaders;
 }
 
 export { BodyGetTypesNull, BodyGetTypes };

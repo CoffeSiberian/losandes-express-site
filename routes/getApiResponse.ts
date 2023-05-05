@@ -1,20 +1,22 @@
 import { Request, Response as apiResponse } from "express";
-import { getFetch } from "../helpers/dataFetch";
+import { AxiosError } from "axios";
+import { dataGet } from "../helpers/dataFetch";
 import { BodyGetTypes } from "../types/bodyGetTypes";
 import { setCache } from "../helpers/cache";
 
 const getApiResponse = async (req: Request, res: apiResponse) => {
     let bodyData: BodyGetTypes = req.body;
 
-    let apiResponse = await getFetch(
-        null,
-        bodyData.headers,
-        new URL(bodyData.url)
+    let apiResponse = await dataGet(
+        { headers: bodyData.headers },
+        bodyData.url
     );
 
-    res.status(apiResponse.status);
     try {
-        let json = await apiResponse.json();
+        if (!apiResponse || !("data" in apiResponse)) throw new Error("Error");
+        if (apiResponse.status !== 200) throw new Error("Error");
+
+        let json = await apiResponse.data;
         setCache(bodyData.url, {
             data: json,
             status: apiResponse.status,
@@ -22,7 +24,7 @@ const getApiResponse = async (req: Request, res: apiResponse) => {
         res.send(json);
     } catch (e) {
         res.status(404);
-        res.send(JSON.stringify({ error: "The API did not return a json" }));
+        res.send(JSON.stringify({ error: 404 }));
     }
 };
 
