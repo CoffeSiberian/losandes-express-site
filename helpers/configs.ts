@@ -12,3 +12,7 @@ export const DISCORD_ID_SERVER: string = process.env.DISCORD_ID_SERVER!;
 export const DISCORD_ROLES_ID: DiscordRoles = {
     roles_id: roles,
 };
+
+export const BASE_IA_URL: string = process.env.BASE_IA_URL!;
+export const IA_CHAT_ENDPOINT: string = process.env.IA_CHAT_ENDPOINT!;
+export const PASSWORD_HASH: string = process.env.PASSWORD_HASH!;

@@ -3,13 +3,15 @@ import { BodyGetTypesNull } from "../types/bodyGetTypes";
 import { BodyGetTypes } from "../types/bodyGetTypes";
 import { getCache } from "../helpers/cache";
 import { CacheTypes } from "../types/cacheTypes";
+import { checkHash } from "../helpers/hash";
+import { PASSWORD_HASH } from "../helpers/configs";
 
-const checkValues = async (
+const checkValuesApiResponse = async (
     req: Request,
     res: Response,
     next: NextFunction
 ): Promise<Function | void> => {
-    let bodyData: BodyGetTypesNull = req.body;
+    const bodyData: BodyGetTypesNull = req.body;
     if (
         !(
             bodyData.url === undefined ||
@@ -22,14 +24,41 @@ const checkValues = async (
     res.send({ error: "need more data" });
 };
 
+const checkValuesIaChat = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+): Promise<Function | void> => {
+    const bodyData = req.body;
+    if (!(bodyData.prompt === undefined || bodyData.pass === undefined)) {
+        return next();
+    }
+    res.status(500);
+    res.send({ error: "need more data" });
+};
+
+const protectRoute = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+): Promise<Function | void> => {
+    const bodyData = req.body.pass;
+
+    checkHash(bodyData, PASSWORD_HASH, (result: boolean) => {
+        if (result) return next();
+        res.status(401);
+        res.send({ error: "unauthorized" });
+    });
+};
+
 const isCached = async (
     req: Request,
     res: Response,
     next: NextFunction,
     cacheKey: string
 ): Promise<Function | void> => {
-    let bodyData: BodyGetTypes = req.body;
-    let cachedData: CacheTypes | undefined = getCache(cacheKey);
+    const bodyData: BodyGetTypes = req.body;
+    const cachedData: CacheTypes | undefined = getCache(cacheKey);
 
     if (!cachedData) return next();
 
@@ -37,4 +66,4 @@ const isCached = async (
     res.send(cachedData.data);
 };
 
-export { checkValues, isCached };
+export { checkValuesApiResponse, checkValuesIaChat, protectRoute, isCached };

@@ -1,5 +1,4 @@
 import { Request, Response as apiResponse } from "express";
-import { AxiosError } from "axios";
 import { dataGet } from "../helpers/dataFetch";
 import { BodyGetTypes } from "../types/bodyGetTypes";
 import { setCache } from "../helpers/cache";

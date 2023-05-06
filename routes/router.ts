@@ -1,8 +1,14 @@
 import { Express } from "express";
-import { checkValues, isCached } from "../middlewares/appMiddleware";
+import {
+    checkValuesApiResponse,
+    checkValuesIaChat,
+    protectRoute,
+    isCached,
+} from "../middlewares/appMiddleware";
 
 // POST
 import getApiResponse from "./getApiResponse";
+import postIaChat from "./postIaChat";
 
 // GET
 import getPartnerLogo from "./getPartnerLogo";
@@ -12,10 +18,11 @@ export default function (app: Express) {
     // POST
     app.post(
         "/getApiResponse/",
-        checkValues,
+        checkValuesApiResponse,
         (req, res, next) => isCached(req, res, next, req.body.url),
         getApiResponse
     );
+    app.post("/postIaChat/", checkValuesIaChat, protectRoute, postIaChat);
 
     // GET
     app.get("/getPartnerLogo/:name", getPartnerLogo);
