@@ -5,7 +5,10 @@ PORT=8081
 CACHE_TIME=300
 DISCORD_BOT_TOKEN=your_token
 DISCORD_ID_SERVER=your_discord_server_id
-DISCORD_ROLES_ID="string_id","string_id"
+DISCORD_ROLES_ID=string_id,string_id
+BASE_IA_URL=your_ia_url
+IA_CHAT_ENDPOINT=endpoint_route
+PASSWORD_HASH=your_protection_password
 ```
 
 -   Cache time is represented in seconds
@@ -32,7 +35,7 @@ npm run start
 ```
 
 <details>
- <summary><code>POST</code> <code><b>/getApiResponse</b></code> <code>(Send GET request to other API)</code></summary>
+ <summary><code>POST</code> <code><b>/getApiResponse/</b></code> <code>(Send GET request to other API)</code></summary>
 
 `BODY`:
 
@@ -54,6 +57,29 @@ npm run start
 ### Remember
 
 These are just the responses that our backend sends. The other answers may depend on the API you are querying.
+
+</details>
+
+---
+
+<details>
+ <summary><code>POST</code> <code><b>/postIaChat/</b></code> <code>(GET response from AI API)</code></summary>
+
+`BODY`:
+
+```json
+{
+  "prompt": string,
+  "pass": string
+}
+```
+
+`Response`:
+
+> | http code | content-type       | response                   |
+> | --------- | ------------------ | -------------------------- |
+> | `200`     | `application/json` | `text/html; charset=utf-8` |
+> | `404`     | `application/json` | `{"error": 404}`           |
 
 </details>
 
