@@ -1,6 +1,5 @@
 interface CacheTypes {
-    data: Object;
-    status: number;
+    data: any;
 }
 
 export { CacheTypes };

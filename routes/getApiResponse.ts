@@ -18,7 +18,6 @@ const getApiResponse = async (req: Request, res: apiResponse) => {
         let json = await apiResponse.data;
         setCache(bodyData.url, {
             data: json,
-            status: apiResponse.status,
         });
         res.send(json);
     } catch (e) {

@@ -30,7 +30,13 @@ const checkValuesIaChat = async (
     next: NextFunction
 ): Promise<Function | void> => {
     const bodyData = req.body;
-    if (!(bodyData.prompt === undefined || bodyData.pass === undefined)) {
+    if (
+        !(
+            bodyData.prompt === undefined ||
+            bodyData.pass === undefined ||
+            bodyData.user_id === undefined
+        )
+    ) {
         return next();
     }
     res.status(500);
@@ -57,12 +63,10 @@ const isCached = async (
     next: NextFunction,
     cacheKey: string
 ): Promise<Function | void> => {
-    const bodyData: BodyGetTypes = req.body;
     const cachedData: CacheTypes | undefined = getCache(cacheKey);
 
     if (!cachedData) return next();
 
-    res.status(cachedData.status);
     res.send(cachedData.data);
 };
 

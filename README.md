@@ -70,7 +70,8 @@ These are just the responses that our backend sends. The other answers may depen
 ```json
 {
   "prompt": string,
-  "pass": string
+  "pass": string,
+  "user_id": string
 }
 ```
 

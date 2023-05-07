@@ -46,7 +46,6 @@ const getHallOfFame = async (req: Request, res: Response) => {
 
         setCache("hallOfFame", {
             data: { response: usersHallOfFame },
-            status: apiResponse.status,
         });
         res.send(usersHallOfFame);
     } catch (e) {
