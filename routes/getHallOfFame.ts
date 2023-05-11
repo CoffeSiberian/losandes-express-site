@@ -44,10 +44,11 @@ const getHallOfFame = async (req: Request, res: Response) => {
         const json: Member[] = await apiResponse.data;
         const usersHallOfFame = getUsersHallOfFame({ members: json });
 
+        const responseObj = { response: usersHallOfFame };
         setCache("hallOfFame", {
-            data: { response: usersHallOfFame },
+            data: responseObj,
         });
-        res.send(usersHallOfFame);
+        res.send(responseObj);
     } catch (e) {
         res.status(404);
         res.send({ error: 404 });
