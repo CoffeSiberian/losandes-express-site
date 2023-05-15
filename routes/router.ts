@@ -1,6 +1,7 @@
 import { Express } from "express";
 import {
     checkValuesApiResponse,
+    checkValuesContact,
     checkValuesIaChat,
     protectRoute,
     isCached,
@@ -9,6 +10,7 @@ import {
 // POST
 import getApiResponse from "./getApiResponse";
 import postIaChat from "./postIaChat";
+import postContact from "./postContact";
 
 // GET
 import getPartnerLogo from "./getPartnerLogo";
@@ -23,6 +25,7 @@ export default function (app: Express) {
         getApiResponse
     );
     app.post("/postIaChat/", checkValuesIaChat, protectRoute, postIaChat);
+    app.post("/postContact/", checkValuesContact, postContact);
 
     // GET
     app.get("/getPartnerLogo/:name", getPartnerLogo);

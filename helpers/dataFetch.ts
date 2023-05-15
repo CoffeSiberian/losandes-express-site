@@ -1,23 +1,23 @@
 import axios, { AxiosResponse, AxiosRequestConfig } from "axios";
 
 const dataGet = async (
-    optios: AxiosRequestConfig | undefined,
+    options: AxiosRequestConfig | undefined,
     url: string
 ): Promise<AxiosResponse | false> => {
     try {
-        return await axios.get(url, optios);
+        return await axios.get(url, options);
     } catch (e) {
         return false;
     }
 };
 
 const dataPost = async (
-    optios: AxiosRequestConfig | undefined,
+    options: AxiosRequestConfig,
     payload: string,
     url: string
 ): Promise<AxiosResponse | false> => {
     try {
-        return await axios.post(url, payload, optios);
+        return await axios.post(url, payload, options);
     } catch (e) {
         return false;
     }

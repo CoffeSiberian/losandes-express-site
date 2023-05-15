@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { BodyGetTypesNull } from "../types/bodyGetTypes";
-import { BodyGetTypes } from "../types/bodyGetTypes";
+import { ContactBodyNotValid } from "../types/contactBodyTypes";
 import { getCache } from "../helpers/cache";
 import { CacheTypes } from "../types/cacheTypes";
 import { checkHash } from "../helpers/hash";
@@ -43,6 +43,27 @@ const checkValuesIaChat = async (
     res.send({ error: "need more data" });
 };
 
+const checkValuesContact = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+): Promise<Function | void> => {
+    const bodyData = req.body;
+    if (
+        !(
+            bodyData.name === undefined ||
+            bodyData.email === undefined ||
+            bodyData.reason === undefined ||
+            bodyData.message === undefined ||
+            bodyData.captcha === undefined
+        )
+    ) {
+        return next();
+    }
+    res.status(500);
+    res.send({ error: "need more data" });
+};
+
 const protectRoute = async (
     req: Request,
     res: Response,
@@ -70,4 +91,10 @@ const isCached = async (
     res.send(cachedData.data);
 };
 
-export { checkValuesApiResponse, checkValuesIaChat, protectRoute, isCached };
+export {
+    checkValuesApiResponse,
+    checkValuesContact,
+    checkValuesIaChat,
+    protectRoute,
+    isCached,
+};
