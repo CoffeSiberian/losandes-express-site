@@ -7,6 +7,8 @@ const roles = process.env.DISCORD_ROLES_ID!.split(",");
 export const PORT: string = process.env.PORT!;
 export const CACHE_TIME: string = process.env.CACHE_TIME!;
 
+export const SECRET_CAPCHA = process.env.SECRET_CAPCHA;
+
 export const DISCORD_WEBHOOK_URL: string = process.env.DISCORD_WEBHOOK_URL!;
 export const DISCORD_BOT_TOKEN: string = process.env.DISCORD_BOT_TOKEN!;
 export const DISCORD_ID_SERVER: string = process.env.DISCORD_ID_SERVER!;

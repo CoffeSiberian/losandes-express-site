@@ -3,6 +3,7 @@ import {
     checkValuesApiResponse,
     checkValuesContact,
     checkValuesIaChat,
+    capchaCheck,
     protectRoute,
     isCached,
 } from "../middlewares/appMiddleware";
@@ -25,7 +26,7 @@ export default function (app: Express) {
         getApiResponse
     );
     app.post("/postIaChat/", checkValuesIaChat, protectRoute, postIaChat);
-    app.post("/postContact/", checkValuesContact, postContact);
+    app.post("/postContact/", checkValuesContact, capchaCheck, postContact);
 
     // GET
     app.get("/getPartnerLogo/:name", getPartnerLogo);
