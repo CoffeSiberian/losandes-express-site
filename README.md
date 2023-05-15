@@ -3,6 +3,8 @@
 ```
 PORT=8081
 CACHE_TIME=300
+SECRET_CAPCHA=reCAPTCHA_v2
+DISCORD_WEBHOOK_URL=discord_webhook(channel+token)
 DISCORD_BOT_TOKEN=your_token
 DISCORD_ID_SERVER=your_discord_server_id
 DISCORD_ROLES_ID=string_id,string_id
@@ -81,6 +83,35 @@ These are just the responses that our backend sends. The other answers may depen
 > | --------- | ------------------ | -------------------------- |
 > | `200`     | `application/json` | `text/html; charset=utf-8` |
 > | `404`     | `application/json` | `{"error": 404}`           |
+
+</details>
+
+---
+
+<details>
+ <summary><code>POST</code> <code><b>/postContact/</b></code> <code>(POST contact form and send to discord webhook)</code></summary>
+
+`BODY`:
+
+```json
+{
+  "name": string,
+  "email": string,
+  "reason": string,
+  "discord": string | undefined,
+  "message": string,
+  "captcha": string
+}
+```
+
+`Response`:
+
+> | http code | content-type       | response                      |
+> | --------- | ------------------ | ----------------------------- |
+> | `200`     | `text/plain`       | `text/html; charset=utf-8`    |
+> | `401`     | `text/plain`       | `Unauthorized`                |
+> | `404`     | `application/json` | `{"error": 404}`              |
+> | `500`     | `application/json` | `{"error": "need more data"}` |
 
 </details>
 
