@@ -3,6 +3,7 @@ import { DiscordRoles } from "../types/configsTypes";
 dotenv.config();
 
 const roles = process.env.DISCORD_ROLES_ID!.split(",");
+const AUTHORIZED_DOMAINS_SPLIT = process.env.AUTHORIZED_DOMAINS!.split(",");
 
 export const PORT: string = process.env.PORT!;
 export const CACHE_TIME: string = process.env.CACHE_TIME!;
@@ -19,3 +20,4 @@ export const DISCORD_ROLES_ID: DiscordRoles = {
 export const BASE_IA_URL: string = process.env.BASE_IA_URL!;
 export const IA_CHAT_ENDPOINT: string = process.env.IA_CHAT_ENDPOINT!;
 export const PASSWORD_HASH: string = process.env.PASSWORD_HASH!;
+export const AUTHORIZED_DOMAINS: string[] = AUTHORIZED_DOMAINS_SPLIT;

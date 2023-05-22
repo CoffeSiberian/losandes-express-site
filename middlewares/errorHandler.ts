@@ -1,12 +1,7 @@
-import { Request, Response, NextFunction, ErrorRequestHandler } from "express";
+import type { ErrorRequestHandler } from "express";
 
-const errorHandler: ErrorRequestHandler = (
-    err: any,
-    req: Request,
-    res: Response,
-    next: NextFunction
-) => {
-    res.sendStatus(404);
+const errorHandler: ErrorRequestHandler = (err, req, res, next) => {
+    res.sendStatus(500);
 };
 
-export { errorHandler };
+export default errorHandler;

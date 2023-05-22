@@ -11,6 +11,7 @@ DISCORD_ROLES_ID=string_id,string_id
 BASE_IA_URL=your_ia_url
 IA_CHAT_ENDPOINT=endpoint_route
 PASSWORD_HASH=your_protection_password
+AUTHORIZED_DOMAINS=domain,domain
 ```
 
 -   Cache time is represented in seconds

@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { BodyGetTypesNull } from "../types/bodyGetTypes";
+import { BodyGetTypesNull, BodyGetTypes } from "../types/bodyGetTypes";
 import {
     ContactBodyNotValid,
     ContactBodyValid,
@@ -8,7 +8,7 @@ import checkCapcha from "./checkCapcha";
 import { getCache } from "../helpers/cache";
 import { CacheTypes } from "../types/cacheTypes";
 import { checkHash } from "../helpers/hash";
-import { PASSWORD_HASH } from "../helpers/configs";
+import { PASSWORD_HASH, AUTHORIZED_DOMAINS } from "../helpers/configs";
 
 const checkValuesApiResponse = async (
     req: Request,
@@ -22,10 +22,32 @@ const checkValuesApiResponse = async (
             bodyData.headers === undefined ||
             bodyData === undefined
         )
-    )
+    ) {
+        try {
+            new URL(bodyData.url!);
+        } catch (error) {
+            res.status(500);
+            res.send({ error: "url not valid" });
+            return;
+        }
         return next();
+    }
     res.status(500);
     res.send({ error: "need more data" });
+};
+
+const checkAuthorizedDomains = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+): Promise<Function | void> => {
+    const bodyData: BodyGetTypes = req.body;
+    const url = new URL(bodyData.url);
+    const domain = url.hostname;
+    if (AUTHORIZED_DOMAINS.includes(domain)) return next();
+
+    res.status(404);
+    res.send(JSON.stringify({ error: 404 }));
 };
 
 const checkValuesIaChat = async (
@@ -104,6 +126,7 @@ const isCached = async (
 
 export {
     checkValuesApiResponse,
+    checkAuthorizedDomains,
     checkValuesContact,
     checkValuesIaChat,
     capchaCheck,

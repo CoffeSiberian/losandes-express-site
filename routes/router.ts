@@ -1,6 +1,7 @@
 import { Express } from "express";
 import {
     checkValuesApiResponse,
+    checkAuthorizedDomains,
     checkValuesContact,
     checkValuesIaChat,
     capchaCheck,
@@ -22,6 +23,7 @@ export default function (app: Express) {
     app.post(
         "/getApiResponse/",
         checkValuesApiResponse,
+        checkAuthorizedDomains,
         (req, res, next) => isCached(req, res, next, req.body.url),
         getApiResponse
     );
