@@ -7,6 +7,8 @@ const AUTHORIZED_DOMAINS_SPLIT = process.env.AUTHORIZED_DOMAINS!.split(",");
 
 export const PORT: string = process.env.PORT!;
 export const CACHE_TIME: string = process.env.CACHE_TIME!;
+export const TRUCKERSMP_API_URL: string = process.env.TRUCKERSMP_API_URL!;
+export const TRUCKERSMP_VTC_ID: string = process.env.TRUCKERSMP_VTC_ID!;
 
 export const SECRET_CAPCHA = process.env.SECRET_CAPCHA;
 

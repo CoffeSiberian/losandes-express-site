@@ -111,6 +111,21 @@ const protectRoute = async (
     });
 };
 
+const checkIdUrl = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+): Promise<Function | void> => {
+    const id = req.params.id;
+
+    if (id === undefined) {
+        res.status(404);
+        res.json({ error: "need more data" });
+        return;
+    }
+    return next();
+};
+
 const isCached = async (
     req: Request,
     res: Response,
@@ -131,5 +146,6 @@ export {
     checkValuesIaChat,
     capchaCheck,
     protectRoute,
+    checkIdUrl,
     isCached,
 };
