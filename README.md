@@ -3,6 +3,8 @@
 ```
 PORT=8081
 CACHE_TIME=300
+TRUCKERSMP_API_URL=https://api.truckersmp.com/v2/
+TRUCKERSMP_VTC_ID=vtc_id
 SECRET_CAPCHA=reCAPTCHA_v2
 DISCORD_WEBHOOK_URL=discord_webhook(channel+token)
 DISCORD_BOT_TOKEN=your_token
@@ -143,5 +145,85 @@ These are just the responses that our backend sends. The other answers may depen
 > | `404`     | `application/json` | `{"error": 404}`                      |
 
 [Discord Guild Member](https://discord.com/developers/docs/resources/guild#guild-member-object-guild-member-structure)
+
+</details>
+
+---
+
+<details>
+ <summary><code>GET</code> <code><b>/getEvents/</b></code> <code>(GET all events from VTC)</code></summary>
+
+`Response`:
+
+> | http code | content-type       | response                             |
+> | --------- | ------------------ | ------------------------------------ |
+> | `200`     | `application/json` | `[Events type]`                      |
+> | `500`     | `application/json` | `{"error": "Internal Server Error"}` |
+
+[Events type](https://truckersmp.com/developers/api#operation/get-vtc-id-events)
+
+</details>
+
+---
+
+<details>
+ <summary><code>GET</code> <code><b>/getNews/</b></code> <code>(GET all news from VTC)</code></summary>
+
+`Response`:
+
+> | http code | content-type       | response                             |
+> | --------- | ------------------ | ------------------------------------ |
+> | `200`     | `application/json` | `[News type]`                        |
+> | `500`     | `application/json` | `{"error": "Internal Server Error"}` |
+
+[News type](https://truckersmp.com/developers/api#operation/get-vtc-id-news)
+
+</details>
+
+---
+
+<details>
+ <summary><code>GET</code> <code><b>/getMembers/</b></code> <code>(GET all members from VTC)</code></summary>
+
+`Response`:
+
+> | http code | content-type       | response                             |
+> | --------- | ------------------ | ------------------------------------ |
+> | `200`     | `application/json` | `[Members type]`                     |
+> | `500`     | `application/json` | `{"error": "Internal Server Error"}` |
+
+[Members type](https://truckersmp.com/developers/api#operation/get-vtc-id-members)
+
+</details>
+
+---
+
+<details>
+ <summary><code>GET</code> <code><b>/getNew/:id</b></code> <code>(GET specified member)</code></summary>
+
+`Response`:
+
+> | http code | content-type       | response                             |
+> | --------- | ------------------ | ------------------------------------ |
+> | `200`     | `application/json` | `[Member type]`                      |
+> | `500`     | `application/json` | `{"error": "Internal Server Error"}` |
+
+[Member type](https://truckersmp.com/developers/api#operation/get-player-id)
+
+</details>
+
+---
+
+<details>
+ <summary><code>GET</code> <code><b>/getMemberInfo/:id</b></code> <code>(GET specified new from specified VTC)</code></summary>
+
+`Response`:
+
+> | http code | content-type       | response                             |
+> | --------- | ------------------ | ------------------------------------ |
+> | `200`     | `application/json` | `[New type]`                         |
+> | `500`     | `application/json` | `{"error": "Internal Server Error"}` |
+
+[New type](https://truckersmp.com/developers/api#operation/get-vtc-id-news-news_id)
 
 </details>
