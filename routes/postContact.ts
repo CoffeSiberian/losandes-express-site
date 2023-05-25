@@ -10,8 +10,13 @@ const headers = {
 
 const postContact = async (req: Request, res: Response) => {
     const bodyData: ContactBodyValid = req.body;
-    const ip_address =
-        req.headers["x-forwarded-for"] || req.socket.remoteAddress;
+    const ip_address: string | string[] = req.headers["x-forwarded-for"]
+        ? req.headers["x-forwarded-for"]
+        : req.socket.remoteAddress
+        ? req.socket.remoteAddress
+        : "None";
+
+    const ip_address_to_send: string = ip_address.toString().split(",")[0];
 
     const nowTimestamp = Math.floor(new Date().getTime() / 1000);
 
@@ -27,7 +32,7 @@ const postContact = async (req: Request, res: Response) => {
                     icon_url: "https://i.imgur.com/NCVmFul.png",
                 },
                 footer: {
-                    text: `IP: ${ip_address}`,
+                    text: `IP: ${ip_address_to_send}`,
                 },
                 fields: [
                     {
