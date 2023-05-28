@@ -5,11 +5,13 @@ PORT=8081
 CACHE_TIME=300
 TRUCKERSMP_API_URL=https://api.truckersmp.com/v2/
 TRUCKERSMP_VTC_ID=vtc_id
+TRUCKERSMP_STAFF_ID=string_id,string_id
 SECRET_CAPCHA=reCAPTCHA_v2
 DISCORD_WEBHOOK_URL=discord_webhook(channel+token)
 DISCORD_BOT_TOKEN=your_token
 DISCORD_ID_SERVER=your_discord_server_id
 DISCORD_ROLES_ID=string_id,string_id
+DISCORD_INVITE_CODE=discord_invite_code
 BASE_IA_URL=your_ia_url
 IA_CHAT_ENDPOINT=endpoint_route
 PASSWORD_HASH=your_protection_password
@@ -225,5 +227,19 @@ These are just the responses that our backend sends. The other answers may depen
 > | `500`     | `application/json` | `{"error": "Internal Server Error"}` |
 
 [New type](https://truckersmp.com/developers/api#operation/get-vtc-id-news-news_id)
+
+</details>
+
+---
+
+<details>
+ <summary><code>GET</code> <code><b>/getSummary/</b></code> <code>(GET general summary of total members)</code></summary>
+
+`Response`:
+
+> | http code | content-type       | response                                                        |
+> | --------- | ------------------ | --------------------------------------------------------------- |
+> | `200`     | `application/json` | `{"vtc_members":100,"discord_members":100,"staff_members":100}` |
+> | `404`     | `application/json` | `{"error": 404}`                                                |
 
 </details>

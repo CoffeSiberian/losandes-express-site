@@ -1,5 +1,7 @@
-interface DiscordRoles {
+export interface DiscordRoles {
     roles_id: string[];
 }
 
-export { DiscordRoles };
+export interface TruckersMPStaff {
+    staff_id: string[];
+}

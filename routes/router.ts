@@ -23,6 +23,7 @@ import getNew from "./tmp_queries/getNew";
 import getMemberInfo from "./tmp_queries/getMemberInfo";
 import getPartnerLogo from "./getPartnerLogo";
 import getHallOfFame from "./getHallOfFame";
+import getSummary from "./getSummary";
 
 export default function (app: Express) {
     // POST
@@ -69,5 +70,10 @@ export default function (app: Express) {
         checkIdUrl,
         (req, res, next) => isCached(req, res, next, `member/${req.params.id}`),
         getMemberInfo
+    );
+    app.get(
+        "/getSummary/",
+        (req, res, next) => isCached(req, res, next, "summary"),
+        getSummary
     );
 }
