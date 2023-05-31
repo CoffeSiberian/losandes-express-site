@@ -237,9 +237,11 @@ These are just the responses that our backend sends. The other answers may depen
 
 `Response`:
 
-> | http code | content-type       | response                                                        |
-> | --------- | ------------------ | --------------------------------------------------------------- |
-> | `200`     | `application/json` | `{"vtc_members":100,"discord_members":100,"staff_members":100}` |
-> | `404`     | `application/json` | `{"error": 404}`                                                |
+> | http code | content-type       | response                                                                                  |
+> | --------- | ------------------ | ----------------------------------------------------------------------------------------- |
+> | `200`     | `application/json` | `{"vtc_members":100,"discord_members":100,"staff_members":100,"last_member":member_type}` |
+> | `404`     | `application/json` | `{"error": 404}`                                                                          |
+
+[Member type](https://truckersmp.com/developers/api#operation/get-player-id)
 
 </details>

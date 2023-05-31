@@ -3,6 +3,7 @@ import {
     ResponseTMP,
     Response as membersResponse,
 } from "../types/api/tmp/members";
+import { Response as playerResponse } from "../types/api/tmp/player_response_type";
 import {
     TRUCKERSMP_API_URL,
     TRUCKERSMP_VTC_ID,
@@ -27,6 +28,28 @@ const countStaffMembers = (members: membersResponse): number => {
     return count;
 };
 
+const getLastMemberId = async (
+    members: membersResponse
+): Promise<playerResponse | null> => {
+    const lastMember = members.members[members.members.length - 1];
+    const userId = lastMember.user_id;
+
+    const TMPapiResponseLastUserInfo = await dataGet(
+        { headers: headers },
+        `${TRUCKERSMP_API_URL}player/${userId}`
+    );
+    if (
+        !TMPapiResponseLastUserInfo ||
+        TMPapiResponseLastUserInfo.status !== 200
+    ) {
+        return null;
+    }
+    const tmpJsonLastUserInfo: playerResponse = await TMPapiResponseLastUserInfo
+        .data.response;
+
+    return tmpJsonLastUserInfo;
+};
+
 const getSummary = async (req: Request, res: Response) => {
     const TMPapiResponse = await dataGet(
         { headers: headers },
@@ -47,11 +70,13 @@ const getSummary = async (req: Request, res: Response) => {
 
         const tmpJson: ResponseTMP = await TMPapiResponse.data;
         const discordJson = await DiscordResponse.data;
+        const tmpJsonLastUserInfo = await getLastMemberId(tmpJson.response);
 
         const jsonResponse = {
             vtc_members: tmpJson.response.members_count,
             discord_members: discordJson.approximate_member_count,
             staff_members: countStaffMembers(tmpJson.response),
+            last_member: tmpJsonLastUserInfo,
         };
 
         setCache("summary", {
