@@ -23,6 +23,7 @@ interface Member {
     premium_since: string | null;
     roles: (string | undefined)[];
     user: User;
+    featured?: boolean;
     mute: boolean;
     deaf: boolean;
 }

@@ -7,20 +7,30 @@ import {
     DISCORD_BOT_TOKEN,
     DISCORD_ID_SERVER,
     DISCORD_ROLES_ID,
+    DISCORD_ROLES_ID_FEATURED,
 } from "../helpers/configs";
 
-const getUsersHallOfFame = (members: ListMembers): (Member | undefined)[] => {
+const getUsersHallOfFame = (
+    members: ListMembers
+): Array<Member | undefined> => {
     const discordRoles = DISCORD_ROLES_ID.roles_id;
-    let usersHallOfFame: (Member | undefined)[] = [];
+    const featuredRoles = DISCORD_ROLES_ID_FEATURED.roles_id;
+    let usersHallOfFame: Array<Member | undefined> = [];
 
     members.members.map((member) => {
         let userRoles = member.roles;
+        let userFeatured = false;
+
         let userHallOfFame = userRoles.filter((role) => {
             if (role === undefined) return false;
+            if (featuredRoles.includes(role)) userFeatured = true;
             return discordRoles.includes(role);
         });
 
-        if (userHallOfFame.length > 0) usersHallOfFame.push(member);
+        if (userHallOfFame.length > 0) {
+            member.featured = userFeatured;
+            usersHallOfFame.push(member);
+        }
     });
     return usersHallOfFame;
 };

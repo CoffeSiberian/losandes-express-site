@@ -1,8 +1,13 @@
 import dotenv from "dotenv";
-import { DiscordRoles, TruckersMPStaff } from "../types/configsTypes";
+import {
+    DiscordRoles,
+    DiscordRolesFeatured,
+    TruckersMPStaff,
+} from "../types/configsTypes";
 dotenv.config();
 
 const roles = process.env.DISCORD_ROLES_ID!.split(",");
+const roles_Featured = process.env.DISCORD_ROLES_ID_FEATURED!.split(",");
 const AUTHORIZED_DOMAINS_SPLIT = process.env.AUTHORIZED_DOMAINS!.split(",");
 const TRUCKERSMP_STAFF_ID_SPLIT = process.env.TRUCKERSMP_STAFF_ID!.split(",");
 
@@ -20,6 +25,9 @@ export const SECRET_CAPCHA = process.env.SECRET_CAPCHA;
 export const DISCORD_WEBHOOK_URL: string = process.env.DISCORD_WEBHOOK_URL!;
 export const DISCORD_BOT_TOKEN: string = process.env.DISCORD_BOT_TOKEN!;
 export const DISCORD_ID_SERVER: string = process.env.DISCORD_ID_SERVER!;
+export const DISCORD_ROLES_ID_FEATURED: DiscordRolesFeatured = {
+    roles_id: roles_Featured,
+};
 export const DISCORD_ROLES_ID: DiscordRoles = {
     roles_id: roles,
 };
