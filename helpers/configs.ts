@@ -37,3 +37,5 @@ export const BASE_IA_URL: string = process.env.BASE_IA_URL!;
 export const IA_CHAT_ENDPOINT: string = process.env.IA_CHAT_ENDPOINT!;
 export const PASSWORD_HASH: string = process.env.PASSWORD_HASH!;
 export const AUTHORIZED_DOMAINS: string[] = AUTHORIZED_DOMAINS_SPLIT;
+export const ALLOWEDHEADERS: string = process.env.ALLOWEDHEADERS!;
+export const ALLOWEDORIGIN: string = process.env.ALLOWEDORIGIN!;

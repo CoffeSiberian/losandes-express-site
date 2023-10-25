@@ -16,6 +16,8 @@ BASE_IA_URL=your_ia_url
 IA_CHAT_ENDPOINT=endpoint_route
 PASSWORD_HASH=your_protection_password
 AUTHORIZED_DOMAINS=domain,domain
+ALLOWEDHEADERS=Accept-Encoding, Accept
+ALLOWEDORIGIN=https://domain.com, https://domain2.com
 ```
 
 -   Cache time is represented in seconds
