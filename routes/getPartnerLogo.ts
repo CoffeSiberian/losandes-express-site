@@ -10,10 +10,11 @@ const getPartnerLogo = async (req: Request, res: Response) => {
     }
     const filePath = path.resolve(__dirname, `../static/img/partners/`);
     const files = await readdir(filePath);
+    const indexFilte = files.indexOf(img);
 
-    if (files.includes(img)) {
+    if (indexFilte !== -1) {
         res.setHeader("Content-Disposition", "inline");
-        res.sendFile(filePath + "/" + img);
+        res.sendFile(filePath + "/" + files[indexFilte]);
     } else {
         res.status(404);
         res.send({ error: "File not found" });
