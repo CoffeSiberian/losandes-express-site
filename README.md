@@ -247,3 +247,11 @@ These are just the responses that our backend sends. The other answers may depen
 [Member type](https://truckersmp.com/developers/api#operation/get-player-id)
 
 </details>
+
+To start backend using PM2 (need use npm run build first)
+
+```bash
+pm2 start /home/user/losandes-express-site/build/index.js --name losandes-express-site -u user
+```
+
+Being inside the folder so that it takes the .env
