@@ -66,8 +66,7 @@ const postContact = async (req: Request, res: Response) => {
         if (apiResponse.status >= 300 || apiResponse.status < 200) {
             throw new Error("Error");
         }
-        res.status(200);
-        res.send("ok");
+        res.sendStatus(200);
     } catch (e) {
         res.status(404);
         res.send(JSON.stringify({ error: 404 }));
