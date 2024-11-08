@@ -12,12 +12,9 @@ DISCORD_BOT_TOKEN=your_token
 DISCORD_ID_SERVER=your_discord_server_id
 DISCORD_ROLES_ID=string_id,string_id
 DISCORD_INVITE_CODE=discord_invite_code
-BASE_IA_URL=your_ia_url
-IA_CHAT_ENDPOINT=endpoint_route
-PASSWORD_HASH=your_protection_password
 AUTHORIZED_DOMAINS=domain,domain
-ALLOWEDHEADERS=Accept-Encoding, Accept
-ALLOWEDORIGIN=https://domain.com, https://domain2.com
+ALLOWEDHEADERS=Accept-Encoding, Accept, CF-Connecting-IP
+ALLOWEDORIGIN=*
 ```
 
 -   Cache time is represented in seconds

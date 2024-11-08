@@ -3,14 +3,13 @@ import errorHandler from "./middlewares/errorHandler";
 import http from "http";
 import routes from "./routes/router";
 import cors from "cors";
-import { PORT, ALLOWEDHEADERS, ALLOWEDORIGIN } from "./helpers/configs";
+import { PORT, ALLOWEDORIGIN } from "./helpers/configs";
 
 const app: Express = express();
 
 app.use(
     cors({
         origin: ALLOWEDORIGIN,
-        allowedHeaders: ALLOWEDHEADERS,
     })
 );
 app.use(express.json());

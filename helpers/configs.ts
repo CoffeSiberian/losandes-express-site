@@ -32,5 +32,4 @@ export const DISCORD_ROLES_ID: DiscordRoles = {
 };
 export const DISCORD_INVITE_CODE: string = process.env.DISCORD_INVITE_CODE!;
 
-export const ALLOWEDHEADERS: string = process.env.ALLOWEDHEADERS!;
 export const ALLOWEDORIGIN: string = process.env.ALLOWEDORIGIN!;
