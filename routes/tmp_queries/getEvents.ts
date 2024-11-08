@@ -3,7 +3,7 @@ import { setCache } from "../../helpers/cache";
 import { TMPDataGet } from "../../helpers/TMPDataFetch";
 import { TRUCKERSMP_API_URL, TRUCKERSMP_VTC_ID } from "../../helpers/configs";
 
-const getEvents = async (req: Request, res: apiResponse) => {
+const getEvents = async (req: Request, res: apiResponse): Promise<any> => {
     const url = `${TRUCKERSMP_API_URL}vtc/${TRUCKERSMP_VTC_ID}/events`;
 
     const response = await TMPDataGet(url);

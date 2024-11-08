@@ -3,7 +3,7 @@ import { setCache } from "../../helpers/cache";
 import { TMPDataGet } from "../../helpers/TMPDataFetch";
 import { TRUCKERSMP_API_URL } from "../../helpers/configs";
 
-const getMemberInfo = async (req: Request, res: apiResponse) => {
+const getMemberInfo = async (req: Request, res: apiResponse): Promise<any> => {
     const url = `${TRUCKERSMP_API_URL}player/${req.params.id}`;
 
     const response = await TMPDataGet(url);

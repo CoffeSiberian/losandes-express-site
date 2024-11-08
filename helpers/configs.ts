@@ -8,7 +8,6 @@ dotenv.config();
 
 const roles = process.env.DISCORD_ROLES_ID!.split(",");
 const roles_Featured = process.env.DISCORD_ROLES_ID_FEATURED!.split(",");
-const AUTHORIZED_DOMAINS_SPLIT = process.env.AUTHORIZED_DOMAINS!.split(",");
 const TRUCKERSMP_STAFF_ID_SPLIT = process.env.TRUCKERSMP_STAFF_ID!.split(",");
 
 export const PORT: string = process.env.PORT!;
@@ -33,9 +32,5 @@ export const DISCORD_ROLES_ID: DiscordRoles = {
 };
 export const DISCORD_INVITE_CODE: string = process.env.DISCORD_INVITE_CODE!;
 
-export const BASE_IA_URL: string = process.env.BASE_IA_URL!;
-export const IA_CHAT_ENDPOINT: string = process.env.IA_CHAT_ENDPOINT!;
-export const PASSWORD_HASH: string = process.env.PASSWORD_HASH!;
-export const AUTHORIZED_DOMAINS: string[] = AUTHORIZED_DOMAINS_SPLIT;
 export const ALLOWEDHEADERS: string = process.env.ALLOWEDHEADERS!;
 export const ALLOWEDORIGIN: string = process.env.ALLOWEDORIGIN!;

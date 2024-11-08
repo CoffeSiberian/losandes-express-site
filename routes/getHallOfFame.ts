@@ -35,7 +35,7 @@ const getUsersHallOfFame = (
     return usersHallOfFame;
 };
 
-const getHallOfFame = async (req: Request, res: Response) => {
+const getHallOfFame = async (req: Request, res: Response): Promise<any> => {
     const optios: AxiosRequestConfig = {
         headers: {
             Authorization: `Bot ${DISCORD_BOT_TOKEN}`,

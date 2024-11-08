@@ -50,7 +50,7 @@ const getLastMemberId = async (
     return tmpJsonLastUserInfo;
 };
 
-const getSummary = async (req: Request, res: Response) => {
+const getSummary = async (req: Request, res: Response): Promise<any> => {
     const TMPapiResponse = await dataGet(
         { headers: headers },
         `${TRUCKERSMP_API_URL}vtc/${TRUCKERSMP_VTC_ID}/members`
